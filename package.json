@@ -1,0 +1,29 @@
+{
+  "name": "products_api_technical_test",
+  "version": "1.0.0",
+  "description": "Simple products API with MongoDB",
+  "author": {
+    "name": "Javier Lario",
+    "email": "javi.lario@gmail.com",
+    "url": "https://github.com/JustLitio"
+  },
+  "private": true,
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config server.js dotenv_config_path=./environments/.env.development",
+    "test": "DOTENV_CONFIG_PATH=./environments/.env.test jest --setupFiles dotenv/config --detectOpenHandles"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10",
+    "passport": "^0.5.2",
+    "passport-http-bearer": "^1.0.1"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
+  }
+}

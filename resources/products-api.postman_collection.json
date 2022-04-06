@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "3279eded-84f0-4152-910d-3a4d4935909f",
+		"name": "Products API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /products",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}{{masterAPIEndpoint}}{{productsAPIEndpoint}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}{{masterAPIEndpoint}}{{productsAPIEndpoint}}"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Product created\", () => {",
+							"    var jsonData = pm.response.json();",
+							"    console.log(jsonData);",
+							"    pm.expect(jsonData._id).not.empty;",
+							"    console.log(\"not empty\");",
+							"    pm.collectionVariables.set(\"createdProductId\", jsonData._id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "dummy_bearer_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{postProductName}}\",\n    \"description\": \"{{postProductDescription}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{port}}{{masterAPIEndpoint}}{{productsAPIEndpoint}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}{{masterAPIEndpoint}}{{productsAPIEndpoint}}"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /products/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}{{masterAPIEndpoint}}{{productsAPIEndpoint}}/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}{{masterAPIEndpoint}}{{productsAPIEndpoint}}",
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{createdProductId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /products/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "dummy_bearer_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{putProductName}}\",\n    \"description\": \"{{putProductDescription}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{port}}{{masterAPIEndpoint}}{{productsAPIEndpoint}}/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}{{masterAPIEndpoint}}{{productsAPIEndpoint}}",
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{createdProductId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /products/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "dummy_bearer_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}{{masterAPIEndpoint}}{{productsAPIEndpoint}}/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}{{masterAPIEndpoint}}{{productsAPIEndpoint}}",
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{createdProductId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "8000"
+		},
+		{
+			"key": "masterAPIEndpoint",
+			"value": "/api"
+		},
+		{
+			"key": "productsAPIEndpoint",
+			"value": "/products"
+		},
+		{
+			"key": "postProductName",
+			"value": "POST product name"
+		},
+		{
+			"key": "postProductDescription",
+			"value": "POST product description"
+		},
+		{
+			"key": "createdProductId",
+			"value": ""
+		},
+		{
+			"key": "putProductName",
+			"value": "PUT product name"
+		},
+		{
+			"key": "putProductDescription",
+			"value": "PUT product description"
+		}
+	]
+}
