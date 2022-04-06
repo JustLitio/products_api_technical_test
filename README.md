@@ -1,6 +1,6 @@
 # Products API (Technical Test)
 
-A simple products API using MongoDB for persistence.
+A simple products API using MongoDB for persistence and Passport for HTTP Bearer authentication.
 
 ## Prerequisites
 
@@ -60,7 +60,7 @@ npm run test
 
 ## Testing the API with Postman
 
-There is a Postman Collection [here](resources/products-api.postman_collection.json). Download and import it in Postman.
+There is a [Postman](https://www.postman.com) Collection [here](resources/products-api.postman_collection.json). Download and import it in Postman.
 
 The POST /products Postman API request saves the _id of the returned product in a Postman collection variable, so the other API requests can use it and the use of the Postman collection is streamlined.
 
